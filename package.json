@@ -1,6 +1,6 @@
 {
   "name": "react-native-bluetooth-pocket-printer",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "React-Native plugin for the bluetooth ESC/POS printers.",
   "main": "index.js",
   "scripts": {

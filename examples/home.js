@@ -1,5 +1,5 @@
 /**
- * Created by januslo on 2018/12/27.
+ * Created by agrobricks on 2018/12/27.
  */
 
 import React, {Component} from 'react';
@@ -16,10 +16,8 @@ import {ActivityIndicator,
     TouchableOpacity,
     Dimensions,
     ToastAndroid} from 'react-native';
-import {BluetoothEscposPrinter, BluetoothManager, BluetoothTscPrinter} from "react-native-bluetooth-escpos-printer";
+import {BluetoothEscposPrinter, BluetoothManager} from "react-native-bluetooth-pocket-printer";
 import EscPos from "./escpos";
-import Tsc from "./tsc";
-
 var {height, width} = Dimensions.get('window');
 export default class Home extends Component {
 
@@ -251,17 +249,6 @@ export default class Home extends Component {
                         }
                     })
                 }}/>
-                <Button disabled={this.state.loading|| !(this.state.bleOpend && this.state.boundAddress.length > 0) }
-                        title="TSC" onPress={()=>{
-                   this.props.navigator.push({
-                       component:Tsc,
-                       passProps:{
-                           name:this.state.name,
-                           boundAddress:this.state.boundAddress
-                       }
-                   })
-                }
-                }/>
                 </View>
             </ScrollView>
         );

@@ -1,6 +1,6 @@
 # react-native-bluetooch-escpos-printer
 
-React-Native plugin for the bluetooth ESC/POS & TSC printers.
+React-Native plugin for the bluetooth ESC/POS printers.
 
 Any questions or bug please raise a issue.
 
@@ -8,41 +8,41 @@ Any questions or bug please raise a issue.
 
 #May support Android /IOS
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/januslo/react-native-bluetooth-escpos-printer/master/LICENSE) [![npm version](https://badge.fury.io/js/react-native-bluetooth-escpos-printer.svg)](https://www.npmjs.com/package/react-native-bluetooth-escpos-printer)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/agrobricks/react-native-bluetooth-pocket-printer/master/LICENSE) [![npm version](https://badge.fury.io/js/react-native-bluetooth-pocket-printer.svg)](https://www.npmjs.com/package/react-native-bluetooth-pocket-printer)
 
 ## Installation
 ### Step 1 ###
-Install via NPM [Check In NPM](https://www.npmjs.com/package/react-native-bluetooth-escpos-printer)
+Install via NPM [Check In NPM](https://www.npmjs.com/package/react-native-bluetooth-pocket-printer)
 ```bash
-npm install react-native-bluetooth-escpos-printer --save
+npm install react-native-bluetooth-pocket-printer --save
 ```
 
 Or install via github
 ```bash
-npm install https://github.com/januslo/react-native-bluetooth-escpos-printer.git --save
+npm install https://github.com/agrobricks/react-native-bluetooth-pocket-printer.git --save
 ```
 
 ### Step2 ###
 Link the plugin to your RN project
 ```bash
-react-native link react-native-bluetooth-escpos-printer
+react-native link react-native-bluetooth-pocket-printer
 ```
 
 ### Manual linking (Android) ###
 Ensure your build files match the following requirements:
 
-1. (React Native 0.59 and lower) Define the *`react-native-bluetooth-escpos-printer`* project in *`android/settings.gradle`*:
+1. (React Native 0.59 and lower) Define the *`react-native-bluetooth-pocket-printer`* project in *`android/settings.gradle`*:
 
 ```
-include ':react-native-bluetooth-escpos-printer'
-project(':react-native-bluetooth-escpos-printer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-bluetooth-escpos-printer/android')
+include ':react-native-bluetooth-pocket-printer'
+project(':react-native-bluetooth-pocket-printer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-bluetooth-pocket-printer/android')
 ```
-2. (React Native 0.59 and lower) Add the *`react-native-bluetooth-escpos-printer`* as an dependency of your app in *`android/app/build.gradle`*:
+2. (React Native 0.59 and lower) Add the *`react-native-bluetooth-pocket-printer`* as an dependency of your app in *`android/app/build.gradle`*:
 ```
 ...
 dependencies {
   ...
-  implementation project(':react-native-bluetooth-escpos-printer')
+  implementation project(':react-native-bluetooth-pocket-printer')
 }
 ```
 
@@ -53,7 +53,7 @@ dependencies {
 ### Step3 ###
 Refers to your JS files
 ```javascript
-    import {BluetoothManager,BluetoothEscposPrinter,BluetoothTscPrinter} from 'react-native-bluetooth-escpos-printer';
+    import {BluetoothManager,BluetoothEscposPrinter} from 'react-native-bluetooth-pocket-printer';
 ```
 
 ## Usage and APIs ##
@@ -184,207 +184,6 @@ async function, disconnects and unpairs the specified devices
 | EVENT_CONNECTED | Emits when device connected |
 | EVENT_BLUETOOTH_NOT_SUPPORT | Emits when device not support bluetooth(android only) |
 
-### BluetoothTscPrinter ###
-The printer for label printing.
-
-* printLabel ==>
-async function that performs the label print action.
-
-```javascript
-BluetoothTscPrinter.printLabel(options)
-.then(()=>{
-    //success
-},
-(err)=>{
-    //error
-})
-
-```
-
-#### Options of printLabel( ) function: (JSON object) ####
-
-##### width #####
-    label width , the real size of the label, measured by mm usually.
-##### height #####
-    label height, the real size of the label, measured by mm usually.
-##### direction #####
-    the printing direction, constants of BluetoothTscPrinter.DIRECTION, values BluetoothTscPrinter.DIRECTION.FORWARD/BluetoothTscPrinter.DIRECTION.BACKWARD (0/1)
-##### gap #####
-    the gap between 2 labels, measured by mm usually.
-##### reference #####
-    the "zero" position of the label, values [x,y], default [0,0]
-##### tear #####
-    switch of the paper cut, constants of BluetoothTscPrinter.TEAR, values ON/OFF (string 'ON','OFF')
-##### sound #####
-    switch of the bee sound, values 0/1
-##### text #####
-    the collection of texts to print, contains following fields as the configuration:
-        * text
-            the text string,
-        * x
-            the text print start position-x
-        * y
-            the text print start position-y
-        * fonttype
-            the font type of the text, constanst of BluetoothTscPrinter.FONTTYPE,refereces as table:
-                | CONSTANTS | VALUE   |
-                |---|---|
-                |FONT_1| "1"|
-                |FONT_2| "2"|
-                |FONT_3| "3"|
-                |FONT_4| "4"|
-                |FONT_5| "5"|
-                |FONT_6| "6"|
-                |FONT_7| "7"|
-                |FONT_8|"8"|
-                |SIMPLIFIED_CHINESE| "TSS24.BF2"|
-                |TRADITIONAL_CHINESE| "TST24.BF2"|
-                |KOREAN| "K"|
-        * rotation
-            the rotation of the text, constants of the BluetoothTscPrinter.ROTATION, referces as table:
-                   | CONSTANTS | VALUE   |
-                   |---|---|
-                   |ROTATION_0| 0|
-                   |ROTATION_90| 90|
-                   |ROTATION_180| 180|
-                   |ROTATION_270| 270|
-        * xscal
-            the scal in x,
-        * yscal
-            the scal in y, xscal/yscal is the constants of the BluetoothTscPrinter.FONTMUL, referces as table:
-             | CONSTANTS | VALUE   |
-             |---|---|
-             |MUL_1| 1|
-             |MUL_2| 2|
-             |MUL_3| 3|
-             |MUL_4| 4|
-             |MUL_5| 5|
-             |MUL_6| 6|
-             |MUL_7| 7|
-             |MUL_8| 8|
-             |MUL_9| 9|
-             |MUL_10: 10|
-
-##### qrcode #####
-    the collection of qrcodes to print, contains following fields as the configuration:
-        * code
-            the qrcode content string.
-        * x
-            the print start position at x
-        * y
-            the print start position at y
-        * level
-            the error correction level, constants of BluetoothTscPrinter.EEC, referces as tables:
-            | CONSTANTS | VALUE   |
-            |---|---|
-            |LEVEL_L|"L"|
-            |LEVEL_M| "M"|
-            |LEVEL_Q| "Q"|
-            |LEVEL_H| "H"|
-        * width
-            the qrcode size (width X width),since the qrcode are square normally, so we just config the width.
-
-        * rotation
-            rotation. the same as text object.
-
-##### barcode #####
-    the collection of barcode to print, contains following fields as configuration
-      * x
-        the print start position of x,
-      * y
-        the print start position of y,
-      * type
-        the barcode type, constants of BluetoothTscPrinter, definition as table:
-        | CONSTRANTS | VALUE |
-        |---|---|
-        | CODE128 | "128" |
-        | CODE128M | "128M" |
-        | EAN128 | "EAN128" |
-        | ITF25 | "25" |
-        | ITF25C | "25C" |
-        | CODE39 | "39" |
-        | CODE39C | "39C" |
-        | CODE39S | "39S" |
-        | CODE93 | "93" |
-        | EAN13 | "EAN13" |
-        | EAN13_2 | "EAN13+2" |
-        | EAN13_5 | "EAN13+5" |
-        | EAN8 | "EAN8" |
-        | EAN8_2 | "EAN8+2" |
-        | EAN8_5 | "EAN8+5" |
-        | CODABAR | "CODA" |
-        | POST | "POST" |
-        | UPCA | "EAN13" |
-        | UPCA_2 | "EAN13+2" |
-        | UPCA_5 | "EAN13+5" |
-        | UPCE | "EAN13" |
-        | UPCE_2 | "EAN13+2" |
-        | UPCE_5 | "EAN13+5" |
-        | CPOST | "CPOST" |
-        | MSI | "MSI" |
-        | MSIC | "MSIC" |
-        | PLESSEY | "PLESSEY" |
-        | ITF14 | "ITF14" |
-        | EAN14 | "EAN14" |
-
-     * height
-      the height of the barcode.
-     * readable
-      the human readable factor, 0-not readable, 1-readable.
-     * rotation
-      rotation, the same as text.
-     * code
-      the code to generate and print, should follow the restriction of the code type using.
-     * wide
-     the wide bar lines width (dot)
-     * narrow
-     the narrow bar line width (dot)
-
-##### image #####
-    the collection of the image to print.
-     * x
-     the print start position x.
-     * y
-     the print start position y.
-     * mode
-     the bitmap mode of print, constants of BluetoothTscPrinter.BITMAP_MODE, valuse OVERWRITE(0),OR(1),XOR(2).
-     * width
-     the width of the image to print. (height will be calculated by image ratio)
-     * image
-     the base64 encoded image data(without schema)
-
-#### demo of printLabel() options ####
-```javascript
-let options = {
-   width: 40,
-   height: 30,
-   gap: 20,
-   direction: BluetoothTscPrinter.DIRECTION.FORWARD,
-   reference: [0, 0],
-   tear: BluetoothTscPrinter.TEAR.ON,
-   sound: 0,
-   text: [{
-       text: 'I am a testing txt',
-       x: 20,
-       y: 0,
-       fonttype: BluetoothTscPrinter.FONTTYPE.SIMPLIFIED_CHINESE,
-       rotation: BluetoothTscPrinter.ROTATION.ROTATION_0,
-       xscal:BluetoothTscPrinter.FONTMUL.MUL_1,
-       yscal: BluetoothTscPrinter.FONTMUL.MUL_1
-   },{
-       text: '你在说什么呢?',
-       x: 20,
-       y: 50,
-       fonttype: BluetoothTscPrinter.FONTTYPE.SIMPLIFIED_CHINESE,
-       rotation: BluetoothTscPrinter.ROTATION.ROTATION_0,
-       xscal:BluetoothTscPrinter.FONTMUL.MUL_1,
-       yscal: BluetoothTscPrinter.FONTMUL.MUL_1
-   }],
-   qrcode: [{x: 20, y: 96, level: BluetoothTscPrinter.EEC.LEVEL_L, width: 3, rotation: BluetoothTscPrinter.ROTATION.ROTATION_0, code: 'show me the money'}],
-   barcode: [{x: 120, y:96, type: BluetoothTscPrinter.BARCODETYPE.CODE128, height: 40, readable: 1, rotation: BluetoothTscPrinter.ROTATION.ROTATION_0, code: '1234567890'}],
-   image: [{x: 160, y: 160, mode: BluetoothTscPrinter.BITMAP_MODE.OVERWRITE,width: 60,image: base64Image}]
-}
-```
 ### BluetoothEscposPrinter ###
   the printer for receipt printing, following ESC/POS command.
 

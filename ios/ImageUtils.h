@@ -2,7 +2,7 @@
 //  ImageUtils.h
 //  RNBluetoothEscposPrinter
 //
-//  Created by januslo on 2018/10/7.
+//  Created by agrobricks on 2018/10/7.
 //  Copyright © 2018年 Facebook. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -15,5 +15,4 @@
 + (NSData *)eachLinePixToCmd:(unsigned char *)src nWidth:(NSInteger) nWidth nHeight:(NSInteger) nHeight nMode:(NSInteger) nMode;
 +(unsigned char *)format_K_threshold:(unsigned char *) orgpixels
                                width:(NSInteger) xsize height:(NSInteger) ysize;
-+(NSData *)pixToTscCmd:(uint8_t *)src width:(NSInteger) width;
 @end
